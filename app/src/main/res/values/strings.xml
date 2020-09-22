@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MathAbs</string>
+    <string name="welcome">Welcome to the \n\nMathAbs competition!</string>
+    <string name="welcome_message">You will be presented with basic arithmetic problems, and all you have to do is using only your brain, solve the problem and type your answer.</string>
+    <string name="button_start">Start</string>
+    <string name="problem_sample">25 + 78</string>
+    <string name="answer_sample">103</string>
+</resources>
