@@ -3,13 +3,13 @@ package com.jlbc.bouncingfiguresjava;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
  *  This class represents the specialized view the program uses
@@ -36,7 +36,6 @@ public class Board extends SurfaceView implements Runnable {
     // Objects for graphics methods
     private SurfaceHolder surfaceHolder;
     private Canvas canvas;
-    private Paint paint;
     // Variables related to threads
     private Thread thread = null;
     private volatile boolean drawing;
@@ -51,7 +50,6 @@ public class Board extends SurfaceView implements Runnable {
         super(context);
         // Gets drawing objects
         surfaceHolder = getHolder();
-        paint = new Paint();
     }
 
     // </editor-fold>
@@ -74,8 +72,21 @@ public class Board extends SurfaceView implements Runnable {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
-            // Creates a circle
-            figures.add(new Circle(new PointF(event.getX(), event.getY())));
+            Random random = new Random();
+            switch(random.nextInt(3)) {
+                case 0:
+                    // Creates a circle
+                    figures.add(new Circle(new PointF(event.getX(), event.getY())));
+                    break;
+                case 1:
+                    // Creates a circle
+                    figures.add(new Square(new PointF(event.getX(), event.getY())));
+                    break;
+                case 2:
+                    // Creates a triangle
+                    figures.add(new Triangle(new PointF(event.getX(), event.getY())));
+                    break;
+            }
         }
         return true;
     }
@@ -133,7 +144,6 @@ public class Board extends SurfaceView implements Runnable {
             canvas = surfaceHolder.lockCanvas();
             // Sets background color, text color and size
             canvas.drawColor(Color.argb(255, 0,0,0));
-            paint.setColor(Color.argb(255, 255,255,255));
             // Draw all figures
             // NOTE: This "copy" of the ArrayList is needed to avoid
             // ConcurrentModification error. This error can happen if
