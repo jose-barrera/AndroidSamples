@@ -17,7 +17,6 @@ class MainActivity : Activity() {
         //       we use for compatibility reasons.
         val display = windowManager.defaultDisplay
         // DisplayMetrics class offers more information than getSize()
-        // DisplayMetrics class offers more information than getSize()
         val displayMetrics = DisplayMetrics()
         display.getRealMetrics(displayMetrics)
 

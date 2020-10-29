@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceView
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 /*
  *  This class represents the specialized view the program uses
@@ -28,7 +30,6 @@ class Board(context: Context) : SurfaceView(context), Runnable {
     // Objects for graphics methods
     private var surfaceHolder = holder
     private lateinit var canvas: Canvas
-    private val paint = Paint()
     // Variables related to threads
     private var thread: Thread? = null
     @Volatile private var drawing = false
@@ -49,8 +50,15 @@ class Board(context: Context) : SurfaceView(context), Runnable {
     // touches the screen.
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action and MotionEvent.ACTION_MASK == MotionEvent.ACTION_DOWN) {
-            // Creates a circle
-            figures.add(Circle(PointF(event.x, event.y)))
+            // Creates equal randomly figures
+            when (Random.nextInt(3)) {
+                // Creates a circle
+                0 -> figures.add(Circle(PointF(event.x, event.y)))
+                // Creates a square
+                1 -> figures.add(Square(PointF(event.x, event.y)))
+                // Creates a triangle
+                2 -> figures.add(Triangle(PointF(event.x, event.y)))
+            }
         }
         return true
     }
@@ -103,7 +111,6 @@ class Board(context: Context) : SurfaceView(context), Runnable {
             canvas = surfaceHolder.lockCanvas()
             // Sets background color, text color and size
             canvas.drawColor(Color.argb(255, 0, 0, 0))
-            paint.color = Color.argb(255, 255, 255, 255)
             // Draw all figures
             // NOTE: This "copy" of the ArrayList is needed to avoid
             // ConcurrentModification error. This error can happen if
