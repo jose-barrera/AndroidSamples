@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SoundDemoJava</string>
+    <string name="stop">Stop</string>
+    <string name="song1">Accept - Balls to the Wall</string>
+    <string name="song2">Iron Maiden - Transylvania</string>
+    <string name="song3">Manowar - Warriors of the World United</string>
+    <string name="title">Sound Demo</string>
+    <string name="volume">Volume:</string>
+    <string name="description">SoundPool class reproduces a few seconds of a sound, its main use is to play short sound effects.\n\nMediaPlayer class reproduces a whole audio file with more features and gives more control over media reproduction.\n</string>
+    <string-array name="spinner_options">
+        <item>SoundPool</item>
+        <item>MediaPlayer</item>
+    </string-array>
+</resources>
